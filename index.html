@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#ff9f1c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Chasse au trésor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="player">
+
+  <!-- Écran d'accueil -->
+  <section id="screen-start" class="screen active">
+    <div class="start-box">
+      <div class="big-emoji bounce">🗺️</div>
+      <h1 id="start-title">La chasse au trésor</h1>
+      <p id="start-intro" class="lead"></p>
+      <button id="btn-start" class="btn btn-huge">C'est parti ! 🚀</button>
+      <p id="start-empty" class="note hidden">
+        Aucune cachette n'est encore définie.<br>
+        <a href="admin.html">Ouvrir le back-office</a> pour préparer la chasse.
+      </p>
+    </div>
+  </section>
+
+  <!-- Écran de jeu -->
+  <section id="screen-play" class="screen">
+    <header class="play-top">
+      <div id="steps" class="steps"></div>
+      <button id="btn-parent" class="icon-btn" title="Menu parent">⋯</button>
+    </header>
+
+    <div class="riddle-card">
+      <div class="riddle-head">
+        <span id="riddle-label">Énigme 1</span>
+        <button id="btn-speak" class="icon-btn speak" title="Écouter l'énigme">🔊</button>
+      </div>
+      <p id="riddle-text"></p>
+      <button id="btn-hint" class="btn btn-small btn-ghost">💡 Un indice ?</button>
+      <p id="hint-text" class="hint hidden"></p>
+    </div>
+
+    <div class="compass-wrap">
+      <div id="compass" class="compass">
+        <svg id="arrow" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M50 6 L80 62 L58 56 L58 92 L42 92 L42 56 L20 62 Z" />
+        </svg>
+      </div>
+      <div id="temp" class="temp">…</div>
+      <div id="distance" class="distance">Recherche du GPS…</div>
+      <div id="compass-note" class="note small hidden"></div>
+    </div>
+
+    <button id="btn-map" class="btn btn-small btn-ghost hidden">🗺️ Voir la carte</button>
+    <div id="map-play" class="map hidden"></div>
+    <div id="gps-status" class="note small"></div>
+  </section>
+
+  <!-- Écran « trouvé ! » -->
+  <section id="screen-found" class="screen">
+    <div class="found-box">
+      <div id="found-emoji" class="big-emoji pop">⭐</div>
+      <h1>Bravo ! 🎉</h1>
+      <p class="lead">Tu as trouvé <strong id="found-name"></strong> !</p>
+      <p id="found-reward" class="reward"></p>
+      <button id="btn-next" class="btn btn-huge">Énigme suivante ➡️</button>
+    </div>
+  </section>
+
+  <!-- Écran final -->
+  <section id="screen-end" class="screen">
+    <div class="found-box">
+      <div class="big-emoji pop">🏆</div>
+      <h1>Le trésor !</h1>
+      <p id="end-message" class="lead"></p>
+      <div id="badges" class="badges"></div>
+      <button id="btn-replay" class="btn btn-small btn-ghost">↺ Rejouer</button>
+    </div>
+  </section>
+
+  <!-- Menu parent -->
+  <dialog id="parent-menu">
+    <h2>Menu parent</h2>
+    <p class="note small">Le GPS d'un téléphone peut se tromper de 10 à 20 m.</p>
+    <button id="btn-force" class="btn">✅ Valider cette cachette</button>
+    <button id="btn-prev" class="btn btn-ghost">⬅️ Étape précédente</button>
+    <a class="btn btn-ghost" href="admin.html">⚙️ Back-office</a>
+    <button id="btn-close-menu" class="btn btn-ghost">Fermer</button>
+  </dialog>
+
+  <canvas id="confetti"></canvas>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/hunt.js"></script>
+  <script src="js/player.js"></script>
+</body>
+</html>

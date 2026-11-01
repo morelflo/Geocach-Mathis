@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Back-office – Chasse au trésor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin">
+  <header class="admin-top">
+    <h1>⚙️ Back-office</h1>
+    <span id="saved" class="saved">Enregistré ✓</span>
+  </header>
+
+  <main class="admin-main">
+    <section class="card">
+      <h2>La chasse</h2>
+      <label>Titre <input id="f-title" type="text"></label>
+      <label>Message d'accueil <textarea id="f-intro" rows="2"></textarea></label>
+      <label>Message du trésor final <textarea id="f-final" rows="2"></textarea></label>
+      <div class="row">
+        <label>Rayon de validation (m)
+          <input id="f-radius" type="number" min="5" max="100" step="1">
+        </label>
+        <label class="check"><input id="f-showmap" type="checkbox"> Montrer la carte à l'enfant</label>
+      </div>
+      <p class="note small">Le rayon est la distance à laquelle la cachette est considérée comme trouvée.
+        Le GPS d'un téléphone se trompe souvent de 5 à 15 m : 15 m est une bonne valeur.</p>
+    </section>
+
+    <section class="card">
+      <h2>Les cachettes</h2>
+      <div class="toolbar">
+        <button id="btn-add-map" class="btn btn-small">➕ Ajouter sur la carte</button>
+        <button id="btn-add-here" class="btn btn-small btn-ghost">📍 Ajouter à ma position</button>
+        <form id="search-form" class="search">
+          <input id="search" type="search" placeholder="Chercher une adresse, un parc…">
+          <button class="btn btn-small btn-ghost">🔎</button>
+        </form>
+      </div>
+      <p id="map-help" class="note small">Astuce : sur place, utilisez « Ajouter à ma position » en marchant le parcours.
+        Les marqueurs peuvent être déplacés à la main.</p>
+      <div id="map-admin" class="map map-admin"></div>
+      <ol id="poi-list" class="poi-list"></ol>
+    </section>
+
+    <section class="card">
+      <h2>Jouer & partager</h2>
+      <div class="toolbar">
+        <a id="btn-play" class="btn" href="index.html">▶️ Lancer le jeu</a>
+        <a id="btn-sim" class="btn btn-ghost" href="index.html?sim=1">🧪 Tester (simulation)</a>
+        <button id="btn-share" class="btn btn-ghost">📱 Envoyer vers un téléphone</button>
+      </div>
+      <div id="share-box" class="share-box hidden">
+        <p class="note small">Ouvrez ce lien (ou scannez le QR code) sur le téléphone de jeu : la chasse y sera enregistrée.</p>
+        <div id="qr"></div>
+        <input id="share-url" type="text" readonly>
+        <button id="btn-copy" class="btn btn-small">Copier le lien</button>
+      </div>
+      <div class="toolbar">
+        <button id="btn-export" class="btn btn-small btn-ghost">💾 Exporter (hunt.json)</button>
+        <label class="btn btn-small btn-ghost file">📂 Importer
+          <input id="file-import" type="file" accept="application/json,.json" hidden>
+        </label>
+        <button id="btn-reset-progress" class="btn btn-small btn-ghost">↺ Remettre la partie à zéro</button>
+        <button id="btn-clear" class="btn btn-small btn-danger">🗑️ Tout effacer</button>
+      </div>
+    </section>
+  </main>
+
+  <template id="poi-tpl">
+    <li class="poi">
+      <div class="poi-head">
+        <span class="poi-num"></span>
+        <input class="emoji-in" data-k="emoji" maxlength="4" title="Emoji gagné">
+        <input class="name-in" data-k="name" placeholder="Nom de la cachette">
+        <div class="poi-actions">
+          <button data-act="locate" title="Voir sur la carte">🎯</button>
+          <button data-act="up" title="Monter">▲</button>
+          <button data-act="down" title="Descendre">▼</button>
+          <button data-act="del" title="Supprimer">✖</button>
+        </div>
+      </div>
+      <label>Énigme <textarea data-k="riddle" rows="3" placeholder="Je suis grand, j'ai des feuilles… Qui suis-je ?"></textarea></label>
+      <label>Indice (facultatif) <input data-k="hint" type="text"></label>
+      <label>Message quand c'est trouvé <input data-k="reward" type="text" placeholder="Bravo ! Regarde sous le banc…"></label>
+      <div class="row">
+        <label>Latitude <input data-k="lat" type="number" step="0.000001"></label>
+        <label>Longitude <input data-k="lng" type="number" step="0.000001"></label>
+        <label>Rayon (m) <input data-k="radius" type="number" min="0" step="1" placeholder="défaut"></label>
+      </div>
+    </li>
+  </template>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/hunt.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

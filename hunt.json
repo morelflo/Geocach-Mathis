@@ -1,0 +1,53 @@
+{
+  "title": "La chasse au trésor de Mathis",
+  "intro": "Joyeux anniversaire Mathis ! 🎂 Des pirates ont caché un trésor. Suis la flèche et résous les énigmes pour le retrouver !",
+  "finalMessage": "Bravo Mathis ! Tu as trouvé le trésor des pirates ! Joyeux anniversaire ! 🎉🎂",
+  "radius": 15,
+  "showMap": false,
+  "pois": [
+    {
+      "id": "arbre",
+      "name": "le grand arbre",
+      "lat": 48.846222,
+      "lng": 2.337160,
+      "riddle": "Je suis très grand, j'ai des feuilles et des branches, et les oiseaux font leur nid chez moi. Qui suis-je ?",
+      "hint": "Cherche au pied du plus gros arbre !",
+      "reward": "Regarde bien entre les racines, il y a un petit mot caché !",
+      "emoji": "🌳",
+      "radius": 0
+    },
+    {
+      "id": "banc",
+      "name": "le banc",
+      "lat": 48.847120,
+      "lng": 2.336420,
+      "riddle": "J'ai quatre pieds mais je ne marche jamais. On s'assoit sur moi pour se reposer. Qui suis-je ?",
+      "hint": "Je suis en bois et je suis près de l'allée.",
+      "reward": "Regarde sous le banc !",
+      "emoji": "🪑",
+      "radius": 0
+    },
+    {
+      "id": "fontaine",
+      "name": "la fontaine",
+      "lat": 48.847860,
+      "lng": 2.337410,
+      "riddle": "Je fais couler de l'eau toute la journée, et les pigeons viennent boire chez moi. Qui suis-je ?",
+      "hint": "Écoute bien : tu vas m'entendre faire glou-glou !",
+      "reward": "Le prochain indice est caché derrière la fontaine.",
+      "emoji": "⛲",
+      "radius": 0
+    },
+    {
+      "id": "toboggan",
+      "name": "le toboggan",
+      "lat": 48.846780,
+      "lng": 2.338350,
+      "riddle": "On grimpe à mon échelle, et ensuite on glisse, wiiiz ! Qui suis-je ?",
+      "hint": "Va voir l'aire de jeux !",
+      "reward": "Le trésor est tout près… Demande à papa ou maman !",
+      "emoji": "🛝",
+      "radius": 0
+    }
+  ]
+}
